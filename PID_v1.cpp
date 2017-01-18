@@ -52,7 +52,7 @@ bool PID::Compute()
    if(timeChange>=SampleTime)
    {
       /*Compute all the working error variables*/
-	  double input = *myInput;
+      double input = *myInput;
       double error = *mySetpoint - input;
       ITerm+= (ki * error);
       if(ITerm > outMax) ITerm= outMax;
@@ -62,9 +62,10 @@ bool PID::Compute()
       /*Compute PID Output*/
       double output = kp * error + ITerm- kd * dInput;
       
-	  if(output > outMax) output = outMax;
+      if(output > outMax) output = outMax;
       else if(output < outMin) output = outMin;
-	  *myOutput = output;
+      
+      *myOutput = output;
 	  
       /*Remember some variables for next time*/
       lastInput = input;
@@ -130,11 +131,11 @@ void PID::SetOutputLimits(double Min, double Max)
  
    if(inAuto)
    {
-	   if(*myOutput > outMax) *myOutput = outMax;
-	   else if(*myOutput < outMin) *myOutput = outMin;
+      if(*myOutput > outMax) *myOutput = outMax;
+      else if(*myOutput < outMin) *myOutput = outMin;
 	 
-	   if(ITerm > outMax) ITerm= outMax;
-	   else if(ITerm < outMin) ITerm= outMin;
+      if(ITerm > outMax) ITerm= outMax;
+      else if(ITerm < outMin) ITerm= outMin;
    }
 }
 
@@ -175,7 +176,7 @@ void PID::SetControllerDirection(int Direction)
 {
    if(inAuto && Direction !=controllerDirection)
    {
-	  kp = (0 - kp);
+      kp = (0 - kp);
       ki = (0 - ki);
       kd = (0 - kd);
    }   
